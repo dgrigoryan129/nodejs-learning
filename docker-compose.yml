@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  nodejslearning:
+    image: nodejslearning
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+    volumes:
+      - "./app:/usr/src/app/app"
