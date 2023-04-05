@@ -1,15 +1,14 @@
-const Event = require('../models/event')
+const {Event} = require('../utils/database')
 
-exports.getAllEvents = (req, res, next) => {
-    Event.getAllEvents()
+exports.getAllEvents = async (req, res, next) => {
+    Event.findAll()
     .then((data) => {
-        // console.log(data[0], 'rows')
+        console.log(data, 'rows')
         res.render('shop/index', {
-            prods:data[0],
+            prods:data,
             pageTitle: 'Home',
             path: '/'
         })
-        // res.send(`<h1>${data[0][0].eventName}</h1>`)
     })
     .catch(err => console.log(err))
 }
@@ -17,9 +16,13 @@ exports.getAllEvents = (req, res, next) => {
 exports.getEventDetails = (req, res, next) => {
     const id = req.params.eventId
     console.log(id,'id')
-    Event.getEventDetails(id)
-    .then( ([event]) => {
-        console.log(event[0], 'detail')
+    Event.findAll({
+        where: {
+          eventId: id
+        }
+      })
+    .then( (event) => {
+        console.log(event, 'detail')
         res.render('shop/product-detail', {
             product: event[0],
             pageTitle: event.eventName,

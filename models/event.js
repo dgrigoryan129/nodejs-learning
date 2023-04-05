@@ -1,17 +1,39 @@
-const db = require('../utils/database')
+const sequelize = require('../utils/database');
+const Sequalize = require('sequelize');
+// const Ticket = require('./ticket.model');
 
-module.exports = class Event{
-    constructor(id, eventName, tickets, createdBy){
-        this.id = id;
-        this.eventName = eventName;
-        this.tickets = tickets;
-        this. createdBy = createdBy;
-    }
-    static getAllEvents (){
-        return db.execute('SELECT * FROM events')
-    }
+module.exports = (sequelize) => {
+    sequelize.define('event',{
+    eventId: {
+        type: Sequalize.CHAR(4),
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
+    eventName: Sequalize.STRING,
+    createdAt: Sequalize.DATE,
+    tickets:Sequalize.DOUBLE,
+    createdBy: Sequalize.CHAR(45)
+    // tickets: [Ticket]
+});
 
-    static getEventDetails (id){
-        return db.execute('SELECT * FROM events WHERE events.eventId = ?', [id]);
-    }
+// Event.beforeSync(()=> console.log('Events beforesync'));
+// Event.afterSync(()=> console.log('Events aftersync'));
 }
+
+
+// module.exports = class Event{
+//     constructor(id, eventName, tickets, createdBy){
+//         this.id = id;
+//         this.eventName = eventName;
+//         this.tickets = tickets;
+//         this. createdBy = createdBy;
+//     }
+//     static getAllEvents (){
+//         return db.execute('SELECT * FROM events')
+//     }
+
+//     static getEventDetails (id){
+//         return db.execute('SELECT * FROM events WHERE events.eventId = ?', [id]);
+//     }
+// }
