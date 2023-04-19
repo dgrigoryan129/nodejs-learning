@@ -6,7 +6,6 @@ module.exports = (sequelize) => {
     sequelize.define('event',{
     eventId: {
         type: Sequalize.CHAR(4),
-        autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },

@@ -5,7 +5,8 @@ const path = require('path')
 
 const sequelize = new Sequelize('Test_schema', 'root', 'mysqleight', {
     dialect: 'mysql',
-     host: 'localhost'
+     host: 'localhost',
+     port: 3306
 });
 
 

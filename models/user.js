@@ -3,43 +3,17 @@ const crypto = require("crypto");
 
 
 module.exports = (sequelize) => {
-  const User = sequelize.define("user", {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      //allowNull: false,
-      primaryKey: true,
+  const User = sequelize.define("users", {
+    username: {
+      type: DataTypes.STRING
     },
-    email:{
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    fullName: {
-      type: DataTypes.STRING,
-      allowNull: true,
+    email: {
+      type: DataTypes.STRING
     },
     password: {
-      type: DataTypes.STRING(64),
-      allowNull: true,
-     
+      type: DataTypes.STRING
     },
- 
-    googleId: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    picture: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    resetPassword: {
-      type: DataTypes.BOOLEAN,
-      
-    },
-    isAdmin: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
+    isAdmin: DataTypes.BOOLEAN
   });
-
+  return User;
 };
