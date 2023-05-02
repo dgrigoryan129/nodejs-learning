@@ -1,12 +1,14 @@
 const mysql = require('mysql2');
 const {Sequelize, DataTypes} = require('sequelize');
 const fs = require('fs');
-const path = require('path')
+const path = require('path');
+const {DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT} = process.env;
 
-const sequelize = new Sequelize('Test_schema', 'root', 'mysqleight', {
+
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
     dialect: 'mysql',
-     host: 'localhost',
-     port: 3306
+     host: DB_HOST,
+     port: DB_PORT
 });
 
 
