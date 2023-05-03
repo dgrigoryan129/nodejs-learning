@@ -2,6 +2,8 @@ const mysql = require('mysql2');
 const {Sequelize, DataTypes} = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
 const {DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT} = process.env;
 
 
