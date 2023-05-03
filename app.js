@@ -5,7 +5,8 @@ const path = require('path');
 const {conn} = require('./utils/database');
 const errorUtil = require('./utils/error');
 
-const eventRouter = require('./routes/eventsRoute')
+const eventRouter = require('./routes/eventsRoute');
+const usersLoginRouter = require('./routes/login');
 
 const app = express();
 
@@ -22,7 +23,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bp.urlencoded({ extended: false }));
 
-app.use(eventRouter)
+app.use(eventRouter);
+app.use(usersLoginRouter);
 
 app.use(errorUtil.get404);
 

@@ -18,7 +18,6 @@ module.exports = (sequelize) => {
     sequelize.define('ticket',{
     ticketId: {
         type: Sequalize.CHAR(4),
-        autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
